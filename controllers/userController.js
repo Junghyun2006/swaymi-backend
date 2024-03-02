@@ -14,6 +14,8 @@ const getUsers = async (req, res) => {
   }
 };
 
+//
+
 const registerUser = async (req, res) => {
   try {
     const db = getDb();
