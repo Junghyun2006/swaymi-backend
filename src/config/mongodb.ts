@@ -1,14 +1,10 @@
-// /backend/config/db.js
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 let dbConnection;
 
-const connectDB = async () => {
+const connectDB = async (): Promise<void> => {
   try {
-    const client = await MongoClient.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const client = await MongoClient.connect(process.env.MONGODB_URI!);
     dbConnection = client.db(process.env.DB_NAME);
     console.log("MongoDB Connected...");
   } catch (error) {
@@ -24,4 +20,4 @@ const getDb = () => {
   return dbConnection;
 };
 
-module.exports = { connectDB, getDb };
+export { connectDB, getDb };

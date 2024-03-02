@@ -1,11 +1,14 @@
 // Dependencies
-const express = require("express");
-const { connectDB } = require("./config/mongodb");
-const userRoutes = require("./routes/userRoutes");
-require("dotenv").config({ path: ".env.local" });
+import express from "express";
+import { connectDB } from "./config/mongodb";
+import userRoutes from "./routes/userRoutes"; // Assuming userRoutes is using export default
+import dotenv from "dotenv";
+
+// Initialize dotenv
+dotenv.config({ path: ".env.local" });
 
 // Constants
-const port = parseInt(process.env.PORT, 10) || 3001;
+const port: number = parseInt(process.env.PORT || "3001", 10);
 
 // Connect to Database
 connectDB();
@@ -20,6 +23,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+
 app.use("/api/users", userRoutes);
 
 // Start the Server
